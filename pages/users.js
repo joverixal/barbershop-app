@@ -1,7 +1,7 @@
 const users = new SupabaseModel("users");
 
 users.getAll({
-  orderBy: { column: "created_at", direction: "desc" },
+  orderBy: { column: "UpdatedAt", direction: "desc" },
   limit: 10
 }, function (data) {
 
