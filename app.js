@@ -10,7 +10,7 @@ const headers = {
 // ➕ Insert customer
 $("#saveBtn").click(function () {
   $.ajax({
-    url: SUPABASE_URL + "/rest/v1/users",
+    url: SUPABASE_URL + "users",
     method: "POST",
     headers: headers,
     data: JSON.stringify({
@@ -27,7 +27,7 @@ $("#saveBtn").click(function () {
 // 📋 Load customers
 function loadCustomers() {
   $.ajax({
-    url: SUPABASE_URL + "/rest/v1/users?select=*",
+    url: SUPABASE_URL + "users?select=*",
     method: "GET",
     headers: headers,
     success: function (data) {
