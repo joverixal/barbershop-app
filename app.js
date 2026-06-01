@@ -14,8 +14,8 @@ $("#saveBtn").click(function () {
     method: "POST",
     headers: headers,
     data: JSON.stringify({
-      name: $("#name").val(),
-      username: $("#username").val()
+      Name: $("#name").val(),
+      Username: $("#username").val()
     }),
     success: function () {
       alert("Saved!");
@@ -33,7 +33,7 @@ function loadCustomers() {
     success: function (data) {
       $("#list").empty();
       data.forEach(c => {
-        $("#list").append(`<li>${c.name} - ${c.username}</li>`);
+        $("#list").append(`<li>${c.Name} - ${c.Username}</li>`);
       });
     }
   });
