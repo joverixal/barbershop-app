@@ -1,23 +1,136 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Barber Shop App</title>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
-<body>
 
-<h1>Barber Shop App</h1>
+<title>Barbershop App</title>
 
-<input id="name" placeholder="Name">
-<input id="username" placeholder="Username">
-<button id="saveBtn">Save</button>
+<!-- Primary Meta -->
+<meta name="title" content="Barbershop App">
+<meta name="description" content="Secure login for barbershop management system. Manage customers, appointments, and sales dashboard.">
 
-<ul id="list"></ul>
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="💈 Barbershop App">
+<meta property="og:description" content="Access your barber shop dashboard and manage your business in real-time.">
+<meta property="og:image" content="assets/images/meta-image.png">
 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="assets/vendor/bootstrap.min.css">
+<link rel="stylesheet" href="assets/vendor/bootstrap-icons.css">
+<link rel="stylesheet" href="assets/vendor/toastr.min.css">
+<link rel="stylesheet" href="assets/css/footer.css">
+
+<script src="assets/vendor/jquery.min.js"></script>
+<script src="assets/vendor/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/toastr.min.js"></script>
+
+<script src="assets/js/helper.js"></script>
 <script src="assets/js/config.js"></script>
 <script src="assets/js/db.js"></script>
 <script src="assets/js/model.js"></script>
-<script src="pages/users.js"></script>
+
+<script src="assets/js/auth.js"></script>
+
+<style>
+
+body {
+  background: linear-gradient(135deg, #7A2BE2, #00B7C2);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  background: #fff;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  border-top: 5px solid #E41200;
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.login-logo {
+  width: 60px;
+}
+
+.login-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #5A1FAF;
+  margin-top: 10px;
+}
+
+.login-btn {
+  background: linear-gradient(135deg, #7A2BE2, #00B7C2);
+  color: #fff;
+  border: none;
+}
+
+.login-btn:hover {
+  opacity: 0.9;
+}
+
+.form-control:focus {
+  border-color: #00B7C2;
+  box-shadow: 0 0 0 0.2rem rgba(0,183,194,0.25);
+}
+
+.small-link {
+  font-size: 0.85rem;
+  text-decoration: none;
+  color: #7A2BE2;
+}
+
+.small-link:hover {
+  text-decoration: underline;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="login-card">
+
+  <!-- Header -->
+  <div class="login-header">
+    <img src="assets/images/app-icon.png" class="login-logo" alt="Logo">
+    <div class="login-title">Barbershop App</div>
+  </div>
+
+  <!-- Login Form -->
+  <form id="frm-login">
+
+    <div class="form-floating mb-3">
+      <input type="text" id="inp-username" class="form-control" placeholder="Username" required>
+      <label>Username</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input type="password" id="inp-password" class="form-control" placeholder="Password" required>
+      <label>Password</label>
+    </div>
+
+    <button type="button" class="btn login-btn w-100" id="btn-login">
+      Login
+    </button>
+
+  </form>
+
+</div>
+
+<div id="footer-placeholder"></div>
+<script src="assets/js/footer.js"></script>
 
 </body>
 </html>

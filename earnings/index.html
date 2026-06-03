@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Barbershop App - Earnings</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="../assets/vendor/bootstrap.min.css">
+<link rel="stylesheet" href="../assets/vendor/bootstrap-icons.css">
+<link rel="stylesheet" href="../assets/vendor/toastr.min.css">
+<link rel="stylesheet" href="../assets/css/menu.css">
+
+<script src="../assets/vendor/jquery.min.js"></script>
+<script src="../assets/vendor/bootstrap.bundle.min.js"></script>
+<script src="../assets/vendor/toastr.min.js"></script>
+
+<script src="../assets/js/helper.js"></script>
+
+<script src="../assets/js/earnings.index.js"></script>
+
+
+<style>
+
+body {
+  background: linear-gradient(135deg, #7A2BE2, #00B7C2);
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+}
+
+/* MAIN */
+.main {
+  flex: 1;
+  padding: 30px;
+}
+
+/* FILTER BUTTONS */
+.filter-btn {
+  border-radius: 20px;
+  font-weight: 500;
+  padding: 6px 14px;
+}
+
+.filter-btn.active {
+  background: linear-gradient(135deg, #7A2BE2, #00B7C2);
+  color: #fff;
+  border: none;
+}
+
+/* DATE RANGE */
+.range-box {
+  background: #fff;
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+/* CARD */
+.card-box {
+  background: #fff;
+  border-radius: 1rem;
+  padding: 25px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  border-top: 4px solid #E41200;
+}
+
+.card-title {
+  font-weight: 600;
+  color: #5A1FAF;
+}
+
+.amount {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #00B7C2;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="menu-container"></div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <h3 class="text-white mb-4">💰 Earnings Dashboard</h3>
+
+  <!-- QUICK FILTERS -->
+  <div class="d-flex gap-2 mb-3">
+
+    <button class="btn btn-light filter-btn active" data-filter="today">Today</button>
+    <button class="btn btn-light filter-btn" data-filter="week">This Week</button>
+    <button class="btn btn-light filter-btn" data-filter="month">This Month</button>
+
+  </div>
+
+  <!-- DATE RANGE FILTER -->
+  <div class="range-box d-flex gap-2 align-items-end">
+
+    <div>
+      <label class="form-label mb-1">From</label>
+      <input type="date" id="date-from" class="form-control">
+    </div>
+
+    <div>
+      <label class="form-label mb-1">To</label>
+      <input type="date" id="date-to" class="form-control">
+    </div>
+
+    <button type="button" class="btn btn-primary" id="btn-range" title="Apply Filter">
+        <i class="bi bi-funnel-fill"></i>
+    </button>
+
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="card-box mb-4">
+
+    <div class="card-title" id="filter-title">Today Earnings</div>
+
+    <div class="amount" id="filter-amount">₱ 0.00</div>
+
+    <small class="text-muted" id="filter-subtext">
+      Updated in real-time
+    </small>
+
+  </div>
+
+</div>
+
+<script>
+    $("#menu-container").load("../menu.html", function () {
+        $.getScript("../assets/js/menu.js");
+    });
+</script>
+
+</body>
+</html>

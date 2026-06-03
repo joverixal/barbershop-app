@@ -1,0 +1,37 @@
+/* SIDEBAR */
+.sidebar {
+  width: 70px;
+  background: #fff;
+  height: 100vh;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+  padding-top: 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebar a {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  color: #333;
+  text-decoration: none;
+}
+
+.sidebar a i {
+  font-size: 1.4rem;
+}
+
+.sidebar a:hover {
+  background: #f3f3f3;
+}
+
+.sidebar a.active {
+  background: linear-gradient(135deg, #7A2BE2, #00B7C2);
+  color: #fff;
+}

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Barbershop App - POS</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="../assets/vendor/bootstrap.min.css">
+<link rel="stylesheet" href="../assets/vendor/bootstrap-icons.css">
+<link rel="stylesheet" href="../assets/vendor/toastr.min.css">
+<link rel="stylesheet" href="../assets/css/menu.css">
+
+<script src="../assets/vendor/jquery.min.js"></script>
+<script src="../assets/vendor/bootstrap.bundle.min.js"></script>
+<script src="../assets/vendor/toastr.min.js"></script>
+
+<script src="../assets/js/helper.js"></script>
+<script src="../assets/js/pos.index.js"></script>
+
+<style>
+
+body {
+  background: linear-gradient(135deg, #7A2BE2, #00B7C2);
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+}
+
+/* MAIN */
+.main {
+  flex: 1;
+  padding: 30px;
+}
+
+/* CARD */
+.card-box {
+  background: #fff;
+  border-radius: 1rem;
+  padding: 18px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  border-top: 4px solid #E41200;
+  margin-bottom: 20px;
+}
+
+.card-title {
+  font-weight: 600;
+  color: #5A1FAF;
+}
+
+/* GRID */
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+}
+
+/* SERVICE CARD */
+.service-card {
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  position: relative;
+  background: #fff;
+  transition: 0.15s;
+  font-size: 0.9rem;
+  user-select: none;
+}
+
+.service-card:hover {
+  border-color: #7A2BE2;
+  transform: translateY(-1px);
+}
+
+.service-card input {
+  display: none;
+}
+
+/* selected */
+.service-card.selected {
+  border: 2px solid #00B7C2;
+  background: rgba(0,183,194,0.08);
+}
+
+/* check icon */
+.check-icon {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  font-size: 1.1rem;
+  color: #00B7C2;
+  display: none;
+}
+
+.service-card.selected .check-icon {
+  display: block;
+}
+
+/* TOTAL */
+.total-box {
+  text-align: center;
+  padding: 10px;
+}
+
+.total-label {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.total-amount {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: red;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="menu-container"></div>
+
+<div class="main">
+
+  <h3 class="text-white mb-4">🧾 POS System</h3>
+
+  <!-- SERVICES -->
+  <div class="card-box">
+
+    <div class="card-title">Select Services</div>
+
+    <div class="service-grid">
+
+      <label class="service-card">
+        <input type="checkbox" value="Haircut" data-price="150">
+        <i class="bi bi-check-circle-fill check-icon"></i>
+        Haircut
+        <div class="price">₱150</div>
+      </label>
+
+      <label class="service-card">
+        <input type="checkbox" value="Fade" data-price="180">
+        <i class="bi bi-check-circle-fill check-icon"></i>
+        Fade
+        <div class="price">₱180</div>
+      </label>
+
+      <label class="service-card">
+        <input type="checkbox" value="Shave" data-price="100">
+        <i class="bi bi-check-circle-fill check-icon"></i>
+        Shave
+        <div class="price">₱100</div>
+      </label>
+
+      <label class="service-card">
+        <input type="checkbox" value="Shave1" data-price="1000">
+        <i class="bi bi-check-circle-fill check-icon"></i>
+        Shave
+        <div class="price">₱1000</div>
+      </label>
+
+      <label class="service-card">
+        <input type="checkbox" value="Shave2" data-price="100">
+        <i class="bi bi-check-circle-fill check-icon"></i>
+        Shave
+        <div class="price">₱100</div>
+      </label>
+
+      <label class="service-card">
+        <input type="checkbox" value="Shave3" data-price="100">
+        <i class="bi bi-check-circle-fill check-icon"></i>
+        Shave
+        <div class="price">₱100</div>
+      </label>
+
+    </div>
+
+  </div>
+
+  <!-- TOTAL ONLY -->
+  <div class="card-box total-box">
+
+    <div class="total-label">Total Amount</div>
+    <div class="total-amount" id="total">₱0.00</div>
+
+    <button class="btn btn-success w-100 mt-3" id="btn-pay">
+      Pay
+    </button>
+
+  </div>
+
+</div>
+
+<script>
+// menu
+$("#menu-container").load("../menu.html", function () {
+    $.getScript("../assets/js/menu.js");
+});
+</script>
+
+</body>
+</html>
