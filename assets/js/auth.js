@@ -37,7 +37,7 @@ $(document).ready(function () {
           $("#inp-password").val('');
           btnLogin.prop('disabled', false);
           btnLogin.html('Login'); // restore original text
-          location.href = "../earnings";
+          location.href = "earnings";
         }, 800);
       }else{
         $("#inp-username").val('')
