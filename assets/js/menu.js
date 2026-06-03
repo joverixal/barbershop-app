@@ -5,20 +5,22 @@ $(function () {
         window.location.href = "../";
     }
 
-    const page = location.pathname.split('/').pop();
+    const path = window.location.pathname;
+    const page = path.split('/').filter(Boolean).pop();
 
     const routes = {
-        "earnings.html": 0,
-        "transactions.html": 1,
-        "pos.html": 2
+        "earnings": "btn-earnings",
+        "earnings.html": "btn-earnings",
+        "transactions": "btn-transaction-history",
+        "transactions.html": "btn-transaction-history",
+        "pos": "btn-pos",
+        "pos.html": "btn-pos",
     };
 
-    $(".sidebar a").removeClass("active");
+    $(".menu-item").removeClass("active");
 
     if (routes[page] !== undefined) {
-        $(".sidebar a")
-            .eq(routes[page])
-            .addClass("active");
+        $(`#${routes[page]}`).addClass("active");
     }
 
     $("#btn-earnings").on("click", function (e) {

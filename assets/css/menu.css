@@ -1,37 +1,63 @@
-/* SIDEBAR */
-.sidebar {
-  width: 70px;
-  background: #fff;
-  height: 100vh;
-  box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-  padding-top: 20px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
+body {
+  padding-top: 60px; /* space for topbar */
 }
 
-.sidebar a {
-  width: 45px;
-  height: 45px;
+/* TOP BAR */
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 55px;
+  background: #fff;
+
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 12px;
+
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  z-index: 999;
+}
+
+/* MENU ICON BUTTON */
+.menu-item {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   border-radius: 10px;
   color: #333;
   text-decoration: none;
+
+  transition: 0.2s;
 }
 
-.sidebar a i {
-  font-size: 1.4rem;
+.menu-item i {
+  font-size: 1.3rem;
 }
 
-.sidebar a:hover {
+/* hover */
+.menu-item:hover {
   background: #f3f3f3;
 }
 
-.sidebar a.active {
-  background: linear-gradient(135deg, #7A2BE2, #00B7C2);
-  color: #fff;
+.menu-item.active {
+  color: #00B7C2;
+  transform: scale(1.1);
+  position: relative;
+}
+
+.menu-item.active i {
+  filter: drop-shadow(0 2px 6px rgba(0, 183, 194, 0.5));
+}
+
+/* logout spacing */
+.logout {
+  position: absolute;
+  right: 10px;
 }

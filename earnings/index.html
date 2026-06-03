@@ -16,30 +16,41 @@
 <script src="../assets/vendor/toastr.min.js"></script>
 
 <script src="../assets/js/helper.js"></script>
-
 <script src="../assets/js/earnings.index.js"></script>
-
 
 <style>
 
 body {
   background: linear-gradient(135deg, #7A2BE2, #00B7C2);
-  min-height: 100vh;
   margin: 0;
-  display: flex;
 }
 
 /* MAIN */
 .main {
-  flex: 1;
-  padding: 30px;
+  padding: 15px;
+  padding-bottom: 100px;
 }
 
-/* FILTER BUTTONS */
+/* HEADER */
+.page-title {
+  color: #fff;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* FILTER BUTTONS (compact like POS) */
+.filter-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+  overflow-x: auto;
+}
+
 .filter-btn {
   border-radius: 20px;
-  font-weight: 500;
-  padding: 6px 14px;
+  font-size: 0.85rem;
+  padding: 6px 12px;
+  white-space: nowrap;
 }
 
 .filter-btn.active {
@@ -48,31 +59,68 @@ body {
   border: none;
 }
 
-/* DATE RANGE */
+/* DATE RANGE (flat style, no card) */
 .range-box {
+  display: flex;
+  gap: 8px;
+  align-items: end;
   background: #fff;
-  padding: 15px;
-  border-radius: 12px;
-  margin-bottom: 15px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
 }
 
-/* CARD */
-.card-box {
+.range-box input {
+  font-size: 0.85rem;
+}
+
+/* APPLY BUTTON (icon only) */
+.apply-btn {
+  width: 42px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* SUMMARY (POS STYLE, NO CARD BOX SHADOW HEAVY) */
+.summary {
   background: #fff;
-  border-radius: 1rem;
-  padding: 25px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-  border-top: 4px solid #E41200;
+  border-radius: 10px;
+  padding: 12px;
+  border: 1px solid #eee;
+  margin-bottom: 10px;
 }
 
-.card-title {
-  font-weight: 600;
-  color: #5A1FAF;
+.summary-title {
+  font-size: 0.85rem;
+  color: #666;
 }
 
-.amount {
-  font-size: 2.2rem;
+.summary-amount {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #00B7C2;
+}
+
+/* TRANSACTION LIST (flat POS style) */
+.tx-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+}
+
+.tx-item {
+  background: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  border: 1px solid #eee;
+}
+
+.tx-amount {
   font-weight: bold;
   color: #00B7C2;
 }
@@ -85,45 +133,43 @@ body {
 
 <div id="menu-container"></div>
 
-<!-- MAIN -->
 <div class="main">
 
-  <h3 class="text-white mb-4">💰 Earnings Dashboard</h3>
+  <div class="page-title">💰 Earnings</div>
 
-  <!-- QUICK FILTERS -->
-  <div class="d-flex gap-2 mb-3">
+  <!-- FILTERS -->
+  <div class="filter-row">
 
     <button class="btn btn-light filter-btn active" data-filter="today">Today</button>
-    <button class="btn btn-light filter-btn" data-filter="week">This Week</button>
-    <button class="btn btn-light filter-btn" data-filter="month">This Month</button>
+    <button class="btn btn-light filter-btn" data-filter="week">Week</button>
+    <button class="btn btn-light filter-btn" data-filter="month">Month</button>
 
   </div>
 
-  <!-- DATE RANGE FILTER -->
-  <div class="range-box d-flex gap-2 align-items-end">
+  <!-- DATE RANGE -->
+  <div class="range-box">
 
     <div>
       <label class="form-label mb-1">From</label>
-      <input type="date" id="date-from" class="form-control">
+      <input type="date" id="date-from" class="form-control form-control-sm">
     </div>
 
     <div>
       <label class="form-label mb-1">To</label>
-      <input type="date" id="date-to" class="form-control">
+      <input type="date" id="date-to" class="form-control form-control-sm">
     </div>
 
-    <button type="button" class="btn btn-primary" id="btn-range" title="Apply Filter">
-        <i class="bi bi-funnel-fill"></i>
+    <button class="btn btn-primary apply-btn" id="btn-range" title="Apply">
+      <i class="bi bi-funnel-fill"></i>
     </button>
 
   </div>
 
   <!-- SUMMARY -->
-  <div class="card-box mb-4">
+  <div class="summary">
 
-    <div class="card-title" id="filter-title">Today Earnings</div>
-
-    <div class="amount" id="filter-amount">₱ 0.00</div>
+    <div class="summary-title" id="filter-title">Today Earnings</div>
+    <div class="summary-amount" id="filter-amount">₱0.00</div>
 
     <small class="text-muted" id="filter-subtext">
       Updated in real-time
@@ -131,12 +177,24 @@ body {
 
   </div>
 
+  <!-- TRANSACTIONS (POS STYLE LIST) -->
+  <div class="tx-list" id="tbl-earnings">
+
+    <div class="tx-item">
+      <span>No records yet</span>
+      <span class="tx-amount">₱0.00</span>
+    </div>
+
+  </div>
+
 </div>
 
 <script>
-    $("#menu-container").load("../menu.html", function () {
-        $.getScript("../assets/js/menu.js");
-    });
+
+$("#menu-container").load("../shared/menu.html", function () {
+    $.getScript("../assets/js/menu.js");
+});
+
 </script>
 
 </body>
